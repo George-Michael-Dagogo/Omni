@@ -1,0 +1,64 @@
+{% extends 'base.html' %}
+{% block content %}
+<style>
+.button {
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+}
+
+.button1 {background-color: #4CAF50;} /* Green */
+.button1 {border-radius: 16px;}
+.button2 {background-color: #f44336;} /* Blue */
+.button2 {border-radius: 16px;}
+</style>
+
+
+
+    <div class="post-entry">
+        <h2>
+            {{ post.title }}
+        </h2>
+        <p>
+            {{ post.body }}
+        </p>
+    </div>
+<button class="button button1">
+    <a href="{% url 'post_edit' post.pk %}" > Edit Blog Post </a>
+</button>
+<button class="button button2">
+    <a href="{% url 'post_delete' post.pk %}"> Delete Blog Post</a>
+</button>
+<h2>Comments...</h2>
+<br/>
+{% if not post.comments.all %}
+    No Comments Yet...<a href="{% url 'add_comment' post.pk %}">Add One</a>
+{% else %}
+<a href="{% url 'add_comment' post.pk %}">Add Comment</a>
+<br/><br/>
+    {% for comment in post.comments.all %}
+        <strong>
+            {{ comment.author }}
+        </strong>
+        <br/>
+        {{ comment.body }}
+        <br/><br/>
+        
+
+    {% endfor %}
+    <a href="{% url 'add_comment' post.pk %}">Add Comment</a>
+{% endif %}   
+<br><br/>
+<br><br/><br><br/><br>
+
+<footer>
+    
+    <p>Would you like to<a href="{% url 'change_password' %}"> Change Password? </a></p>
+  </footer>
+{% endblock %}
