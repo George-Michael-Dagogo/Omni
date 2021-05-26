@@ -1,1 +1,1 @@
-web: gunicorn omniblog.wsgi
+web: gunicorn env.wsgi
