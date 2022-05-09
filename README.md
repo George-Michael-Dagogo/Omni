@@ -1,1 +1,1 @@
-# Omni
+# Omni Blog
